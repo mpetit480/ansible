@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
           - name: Disk usage from command module
-            shell: echo "START" ; sleep {{ tempo }} ; df -h ; echo "END"
+            shell: echo "START" ; uname -a ; sleep {{ tempo }} ; df -h ; echo "END"
             register: space
           - debug:
                var: space.stdout_lines
