@@ -1,0 +1,39 @@
+---
+- name: Ansible to Control-M
+  hosts: localhost
+  vars:
+    endpoint: "https://centos802:8443/automation-api"
+    workloadpolicy: "policy1"
+  tasks:
+    - name: Login to an API
+      uri:
+        url: "{{ endpoint }}/session/login"
+        validate_certs: no
+        method: POST
+        body_format: json
+        status_code: 200
+        body:
+          username: emuser
+          password: emuser
+      register: login_body
+
+    - name: Get Token
+      set_fact:
+        mytoken: "{{ login_body.json.token }}"
+    
+    - debug:
+        var: mytoken
+
+    - name: Workload Policy activate
+      uri:
+        url: "{{ endpoint }}/run/workloadpolicy/{{ workloadpolicy }}/activate"
+        validate_certs: no
+        method: POST
+        body_format: json
+        status_code: 200
+        headers:
+          Content-Type: "application/json"
+          Authorization: "Bearer {{ mytoken }}"
+      register: workloadpolicy_body
+    - debug:
+        var: workloadpolicy_body.json
