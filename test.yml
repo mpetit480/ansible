@@ -1,0 +1,9 @@
+---
+- name: test
+  hosts: all
+  tasks:
+          - name: Disk usage from command module
+            shell: echo "START" ; uname -a ; echo "END"
+            register: space
+          - debug:
+               var: space.stdout_lines
