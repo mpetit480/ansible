@@ -1,0 +1,30 @@
+---
+ - name: Ansible upgrade packages
+   hosts: all
+   become: true
+   tasks: 
+    - name: Ansible Update Cache and Upgrade all Packages Debian distro
+      register: updatesys
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+	  when: ansible_os_family == 'Debian'    
+      
+    - name: Autoremove unneeded packages installed as dependencies
+      register: updatesys
+      ansible.builtin.apt:
+        autoremove: yes
+	  when: ansible_os_family == 'Debian'
+      
+    - name: Ansible Update Cache and Upgrade all Packages RedHat distro
+      register: updatesys
+      ansible.builtin.dnf:
+        name:
+          "*"
+          state: latest
+      when: ansible_os_family == 'RedHat'
+      
+    - name: Display the last line of the previous task to check the stats
+      debug:
+        msg:  "{{updatesys.stdout_lines}"
