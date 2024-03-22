@@ -20,9 +20,8 @@
     - name: Ansible Update Cache and Upgrade all Packages RedHat distro
       register: updatesys
       ansible.builtin.dnf:
-        name:
-          "*"
-          state: latest
+        name: "*"
+        state: latest
       when: ansible_os_family == 'RedHat'
       
     - name: Display the last line of the previous task to check the stats
