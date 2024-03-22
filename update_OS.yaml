@@ -21,8 +21,7 @@
     - name: logs2
       debug: 
         var:  updatesys.stdout_lines
-      
-    - name: Ansible Update Cache and Upgrade all Packages RedHat distro
+    - name: Ansible Upgrade all Packages RedHat distro
       register: updatesys
       ansible.builtin.dnf:
         name: "*"
@@ -30,4 +29,4 @@
       when: ansible_os_family == "RedHat"
     - name: logs3
       debug: 
-        var:  updatesys.stdout_lines
+        var: updatesys.stdout_lines
