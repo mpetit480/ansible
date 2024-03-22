@@ -9,13 +9,13 @@
         name: "*"
         state: latest
         update_cache: yes
-	  when: ansible_os_family == 'Debian'    
+      when: ansible_os_family == 'Debian'    
       
     - name: Autoremove unneeded packages installed as dependencies
       register: updatesys
       ansible.builtin.apt:
         autoremove: yes
-	  when: ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian'
       
     - name: Ansible Update Cache and Upgrade all Packages RedHat distro
       register: updatesys
