@@ -10,12 +10,17 @@
         state: latest
         update_cache: yes
       when: ansible_os_family == "Debian"    
-      
+    - name: logs1
+      debug: 
+        var:  updatesys.stdout_lines
     - name: Autoremove unneeded packages installed as dependencies
       register: updatesys
       ansible.builtin.apt:
         autoremove: yes
       when: ansible_os_family == "Debian"
+     - name: logs2
+      debug: 
+        var:  updatesys.stdout_lines
       
     - name: Ansible Update Cache and Upgrade all Packages RedHat distro
       register: updatesys
@@ -24,5 +29,6 @@
         state: latest
       when: ansible_os_family == "RedHat"
       
-    - debug:
+    - name: logs3
+      debug: 
         var:  updatesys.stdout_lines
