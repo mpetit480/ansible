@@ -28,7 +28,6 @@
         name: "*"
         state: latest
       when: ansible_os_family == "RedHat"
-      
     - name: logs3
       debug: 
         var:  updatesys.stdout_lines
