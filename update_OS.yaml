@@ -24,6 +24,5 @@
         state: latest
       when: ansible_os_family == "RedHat"
       
-    - name: Display
-      debug:
+    - debug:
         var:  updatesys.stdout_lines
