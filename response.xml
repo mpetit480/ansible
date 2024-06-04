@@ -1,5 +1,5 @@
 <AutomatedInstallation langpack="eng">
-    <target.product>Control-M  Agent 9.0.21.080</target.product>
+    <target.product>Control-M  Agent 9.0.21.200</target.product>
     <agent.parameters>
         <entry value="7035" key="ctm_agent.Tracker.Event.Port"/>
         <entry value="" key="ctm_agent.Force.Upgrade"/>
